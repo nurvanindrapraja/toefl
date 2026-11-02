@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOEFL Practice Web</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ===================== LAYAR: LOGIN / DAFTAR ===================== -->
+  <section id="screen-auth" class="screen">
+    <div class="auth-wrap">
+      <div class="card auth-card">
+        <div class="auth-logo">📝</div>
+        <h2 id="auth-title">Masuk</h2>
+        <p class="muted" id="auth-sub">Gunakan akun Gmail yang sudah terdaftar</p>
+
+        <div id="google-btn-box" class="google-btn-box">
+          <div id="google-btn-container" class="google-btn-container"></div>
+          <p id="google-status" class="google-status">Memuat Google Sign-In…</p>
+        </div>
+
+        <div class="auth-divider"><span>atau dengan email</span></div>
+
+        <div class="auth-tabs">
+          <button id="tab-login" class="tab active" type="button">Masuk</button>
+          <button id="tab-register" class="tab" type="button">Daftar</button>
+        </div>
+
+        <form id="form-login" class="auth-form">
+          <label class="field">
+            <span>Email Gmail</span>
+            <input type="email" id="login-email" placeholder="nama@gmail.com" required autocomplete="username" />
+          </label>
+          <label class="field">
+            <span>Kata Sandi</span>
+            <input type="password" id="login-pass" placeholder="••••••••" required minlength="6" autocomplete="current-password" />
+          </label>
+          <div id="auth-error-login" class="auth-error hidden"></div>
+          <button type="submit" class="btn btn-primary btn-block">🔓 Masuk</button>
+        </form>
+
+        <form id="form-register" class="auth-form hidden">
+          <label class="field">
+            <span>Nama</span>
+            <input type="text" id="reg-name" placeholder="Nama lengkap" required autocomplete="name" />
+          </label>
+          <label class="field">
+            <span>Email Gmail</span>
+            <input type="email" id="reg-email" placeholder="nama@gmail.com" required autocomplete="username" />
+          </label>
+          <label class="field">
+            <span>Kata Sandi (min. 6 karakter)</span>
+            <input type="password" id="reg-pass" required minlength="6" autocomplete="new-password" />
+          </label>
+          <label class="field">
+            <span>Ulangi Kata Sandi</span>
+            <input type="password" id="reg-pass2" required minlength="6" autocomplete="new-password" />
+          </label>
+          <div id="auth-error-register" class="auth-error hidden"></div>
+          <button type="submit" class="btn btn-primary btn-block">📝 Daftar &amp; Masuk</button>
+        </form>
+
+        <p class="auth-note">🔒 Akun &amp; riwayat tersimpan lokal di browser ini (localStorage).<br/>Hanya email <strong>@gmail.com</strong> yang dapat dipakai — melalui tombol Google atau form di atas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LAYAR: BERANDA ===================== -->
+  <section id="screen-home" class="screen active">
+    <div class="home-wrap">
+      <div id="home-userbar" class="userbar card">
+        <div class="userbar-info">
+          <img id="userbar-avatar" class="userbar-avatar" alt="" hidden referrerpolicy="no-referrer" />
+          <div id="userbar-initials" class="userbar-initials hidden" aria-hidden="true"></div>
+          <div class="userbar-text">
+            <strong id="userbar-name"></strong>
+            <span id="userbar-email" class="muted"></span>
+          </div>
+        </div>
+        <div class="userbar-actions">
+          <button id="btn-dashboard" class="btn btn-small">📊 Riwayat &amp; Analisis</button>
+          <button id="btn-logout" class="btn btn-small btn-logout">Keluar</button>
+        </div>
+      </div>
+
+      <header class="hero">
+        <div class="hero-badge">📝 Simulasi Ujian</div>
+        <h1>TOEFL Practice Test</h1>
+        <p class="hero-sub">
+          Latihan ujian TOEFL berbasis web dengan 3 bagian:
+          <strong>Listening</strong>, <strong>Structure &amp; Written Expression</strong>,
+          dan <strong>Reading Comprehension</strong>.
+        </p>
+      </header>
+
+      <form id="form-start" class="card home-card">
+        <label class="field">
+          <span>Nama Penguji</span>
+          <input type="text" id="inp-name" placeholder="Masukkan nama Anda" required autocomplete="off" />
+        </label>
+
+        <div class="field">
+          <span>Pilih Paket Ujian</span>
+          <div class="pkg-grid">
+            <label class="pkg-option">
+              <input type="radio" name="pkg" value="full" checked />
+              <div class="pkg-box">
+                <strong>📦 Ujian Lengkap</strong>
+                <small>3 bagian · ±35 soal · 35 menit</small>
+              </div>
+            </label>
+            <label class="pkg-option">
+              <input type="radio" name="pkg" value="listening" />
+              <div class="pkg-box">
+                <strong>🎧 Listening</strong>
+                <small>5 soal · 8 menit</small>
+              </div>
+            </label>
+            <label class="pkg-option">
+              <input type="radio" name="pkg" value="structure" />
+              <div class="pkg-box">
+                <strong>✏️ Structure</strong>
+                <small>20 soal · 12 menit</small>
+              </div>
+            </label>
+            <label class="pkg-option">
+              <input type="radio" name="pkg" value="reading" />
+              <div class="pkg-box">
+                <strong>📖 Reading</strong>
+                <small>±15 soal · 15 menit</small>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">🚀 Mulai Ujian</button>
+
+        <div class="home-info">
+          <p>ℹ️ Tips mengerjakan:</p>
+          <ul>
+            <li>🔀 <strong>Setiap sesi berbeda</strong> — soal dipilih acak dari bank (105 listening · 120 structure · 107 reading) dan urutan opsi jawaban juga diacak.</li>
+            <li>Pada bagian <em>Listening</em>, audio hanya bisa diputar <strong>3 kali</strong> per soal.</li>
+            <li>Gunakan tombol <strong>⚑ Tandai</strong> untuk menandai soal yang ingin ditinjau ulang.</li>
+            <li>Jika waktu habis, ujian bagian tersebut otomatis selesai dan berpindah ke bagian berikutnya.</li>
+            <li>Nilai ditampilkan dalam skala 213–677 (mirip skor ETS PBT).</li>
+          </ul>
+        </div>
+      </form>
+
+      <div id="home-best" class="card home-best hidden"></div>
+    </div>
+  </section>
+
+  <!-- ===================== LAYAR: UJIAN ===================== -->
+  <section id="screen-exam" class="screen">
+    <div class="exam-wrap">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div class="topbar-left">
+          <span id="exam-name" class="topbar-name"></span>
+          <span id="exam-progress" class="topbar-progress"></span>
+        </div>
+        <div id="exam-timer" class="timer" title="Sisa waktu bagian ini">⏱ 00:00</div>
+      </div>
+
+      <!-- Section banner -->
+      <div id="section-banner" class="section-banner"></div>
+
+      <!-- Question area -->
+      <div id="question-area" class="question-area"></div>
+
+      <!-- Navigation -->
+      <div class="exam-nav">
+        <button id="btn-prev" class="btn">← Sebelumnya</button>
+        <div id="palette" class="palette"></div>
+        <button id="btn-next" class="btn">Berikutnya →</button>
+      </div>
+
+      <div class="exam-actions">
+        <button id="btn-submit" class="btn btn-danger">✅ Selesaikan Ujian</button>
+        <button id="btn-flag" class="btn btn-flag">⚑ Tandai Soal Ini</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LAYAR: HASIL ===================== -->
+  <section id="screen-result" class="screen">
+    <div class="result-wrap">
+      <div class="card result-card">
+        <h2 id="result-title">Hasil Ujian</h2>
+        <p id="result-sub" class="muted"></p>
+
+        <div class="score-hero">
+          <div class="score-big" id="result-total">0</div>
+          <div class="score-scale">skala 213 – 677</div>
+          <div id="result-grade" class="grade-badge"></div>
+        </div>
+
+        <div id="result-breakdown" class="breakdown"></div>
+
+        <div class="result-actions">
+          <button id="btn-review" class="btn btn-primary">🔍 Lihat Pembahasan</button>
+          <button id="btn-to-dashboard" class="btn">📊 Riwayat &amp; Analisis</button>
+          <button id="btn-restart" class="btn">🏠 Ulangi dari Awal</button>
+        </div>
+      </div>
+
+      <div id="review-area" class="review-area hidden"></div>
+    </div>
+  </section>
+
+  <!-- ===================== LAYAR: RIWAYAT & ANALISIS ===================== -->
+  <section id="screen-dashboard" class="screen">
+    <div class="dash-wrap">
+      <div class="dash-head card">
+        <div class="dash-user-row">
+          <img id="dash-avatar" class="dash-avatar" alt="" hidden referrerpolicy="no-referrer" />
+          <div id="dash-initials" class="dash-initials hidden" aria-hidden="true"></div>
+          <div>
+            <h2>📊 Riwayat &amp; Analisis</h2>
+            <p class="muted" id="dash-user"></p>
+          </div>
+        </div>
+        <div class="dash-actions">
+          <button id="btn-back-home" class="btn">← Ke Ujian</button>
+        </div>
+      </div>
+
+      <div id="dash-empty" class="card dash-empty hidden">
+        <p>Belum ada riwayat tes. Kerjakan dulu satu ujian, lalu kembali ke sini untuk melihat grafik perkembangan.</p>
+      </div>
+
+      <div id="dash-content" class="hidden">
+        <div class="card dash-card">
+          <h3>📈 Perkembangan Skor Total <small class="muted">(skala 213–677)</small></h3>
+          <div id="chart-total" class="chart"></div>
+          <div id="chart-trend" class="trend-line"></div>
+        </div>
+
+        <div class="card dash-card">
+          <h3>🧩 Aspek yang Perlu Ditingkatkan</h3>
+          <div id="weak-sections"></div>
+        </div>
+
+        <div class="card dash-card">
+          <h3>🗂️ Daftar Semua Tes</h3>
+          <div id="history-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://accounts.google.com/gsi/client" async onload="window.initGoogleSignin && window.initGoogleSignin()" onerror="window.onGoogleScriptError && window.onGoogleScriptError()"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/data-listening-extra.js"></script>
+  <script src="js/data-structure-extra.js"></script>
+  <script src="js/data-reading-extra.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

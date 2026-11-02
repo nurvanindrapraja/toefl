@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+
+# Node (jika pakai npx serve dsb.)
+node_modules/
+npm-debug.log*
+
+# Log
+*.log
